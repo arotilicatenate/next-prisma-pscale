@@ -9,7 +9,7 @@ type PageProps = {
 export default async function ProductDetail({
   params: { productId },
 }: PageProps) {
-    
+    //TODO: Add function to update
   const product: any = await getProductById(parseInt(productId));
   return (
     <div>

@@ -42,7 +42,7 @@ export default async function AdminSection() {
 
         <div className="flex justify-center">
           <button className="px-4 py-2 bg-green-500 text-white hover:bg-green-400 focus:bg-green-400 rounded-lg">
-            Insert
+            Insert{/*TODO: Add logic for inserting products*/}
           </button>
         </div>
       </div>
