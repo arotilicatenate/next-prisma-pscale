@@ -1,9 +1,9 @@
 import { addUser } from "@/services/user-service";
 
 import React from "react";
+import { CustomButton } from "../components/custom-button";
 
 export default function Contacts() {
-  
   return (
     <div className="bg-black">
       <div className="container mx-auto px-4 py-8">
@@ -19,7 +19,7 @@ export default function Contacts() {
                 Name
               </label>
               <input
-                className="appearance-none block w-full bg-white text-white border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-white text-black border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="name"
                 type="text"
                 name="name"
@@ -34,7 +34,7 @@ export default function Contacts() {
                 Email
               </label>
               <input
-                className="appearance-none block w-full bg-white text-white border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-white text-black border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="email"
                 type="email"
                 name="email"
@@ -51,7 +51,8 @@ export default function Contacts() {
                 Message
               </label>
               <input
-                className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text"
+                className="appearance-none block w-full bg-white text-black border border-gray-400 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="message"
                 name="message"
                 placeholder="Enter your message"
@@ -59,12 +60,11 @@ export default function Contacts() {
             </div>
           </div>
           <div className="flex justify-center">
-            <button
-              className="px-4 py-2 bg-purple-800 text-white hover:bg-purple-700 focus:bg-purple-700 rounded-lg"
-              type="submit"
-            >
-              Submit
-            </button>
+            <CustomButton
+              content="Submit"
+              alertMessage="Succes!"
+              goToPage="/"
+            />
           </div>
         </form>
 

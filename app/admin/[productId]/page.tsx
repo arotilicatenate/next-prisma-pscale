@@ -1,9 +1,8 @@
+import { CustomButton } from "@/app/components/custom-button";
 import { Product } from "@/models/product";
 import { getProductById, updateProduct } from "@/services/product-service";
-import Link from "next/link";
 import React from "react";
 
-import CustomSubmitButton from "./SubmitButton";
 type PageProps = {
   params: {
     productId: any;
@@ -12,9 +11,8 @@ type PageProps = {
 export default async function ProductDetail({
   params: { productId },
 }: PageProps) {
-  //TODO: Add function to update
   const product: Product = await getProductById(parseInt(productId));
-  
+
   return (
     <div>
       <h1 className="pt-7">{product.name}</h1>
@@ -104,19 +102,13 @@ export default async function ProductDetail({
         </div>
 
         <div className="flex justify-center">
-        
-          {/* <button
-            type="submit"
-            className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
-          > */}
-            <CustomSubmitButton/>
-
-            
-          {/* </button> */}
-          
+          <CustomButton
+            content="Submit"
+            alertMessage="product updated correctly"
+            goToPage="/admin"
+          />
         </div>
       </form>
-
     </div>
   );
 }
