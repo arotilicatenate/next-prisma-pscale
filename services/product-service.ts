@@ -2,6 +2,10 @@
 import { Product } from "@/models/product";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/dist/server/api-utils";
+import { NextApiResponse } from "next";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 /**
  * Retrieves all products from the database.
@@ -36,5 +40,29 @@ export async function deleteProduct(id: number) {
  */
 export async function getProductById(productId: number): Promise<Product | PromiseLike<Product>> {
     return await prisma.product.findUnique({ where: { id: productId } });
+}
+
+export async function updateProduct(data: FormData) {
+    
+    console.log("updating product with id", data.get("id"));
+    const id: any = data.get("id")
+    try{
+        let res: NextApiResponse = await prisma.product.update({
+
+            where: { id: parseInt(id) },
+            data: {
+                name: data.get('name'),
+                price: data.get('price'),
+                description: data.get('description'),
+                image: data.get('image'),
+                // category_id: data.get('category')
+            },
+        })
+        'use server';
+        
+    }catch(e){
+        console.error(e);
+    }
+   
 }
 

@@ -2,24 +2,27 @@
 
 import { useTransition } from "react";
 import { deleteProduct } from "@/services/product-service";
+import { Product } from "@/models/product";
 type Data = {
-  id: number;
+  product: Product;
+  content: string
 };
-export default function DeleteButton(data: Data) {
+const DeleteButton : React.FC<Data> = ({product, content}) =>{
   let [isPending, startTransition] = useTransition();
-
+  
   return (
     <button
       className="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
       onClick={() =>
         startTransition(() => {
-          console.log("--- Deleting product with id: ", data.id);
+          console.log("--- Deleting product with id: ", product.id);
 
-          deleteProduct(data.id);
+          deleteProduct(parseInt(product.id));
         })
       }
     >
-      Delete
+      {content}
     </button>
   );
 }
+export default DeleteButton;

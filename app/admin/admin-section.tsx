@@ -3,8 +3,10 @@ import { Product } from "@/models/product";
 import { deleteProduct, getProducts } from "@/services/product-service";
 import Link from "next/link";
 import DeleteButton from "./delete-button";
+import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate-path";
 export default async function AdminSection() {
   const products = await getProducts();
+  revalidatePath("/admin")
   return (
     <div className="bg-black">
       <div className="container mx-auto px-4 py-8">
@@ -33,7 +35,7 @@ export default async function AdminSection() {
                       Update
                     </button>
                   </Link>
-                  <DeleteButton id={parseInt(product.id)} />
+                  <DeleteButton product={product} content="Delete"/>
                 </td>
               </tr>
             ))}
